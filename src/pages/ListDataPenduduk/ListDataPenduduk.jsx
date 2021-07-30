@@ -1,4 +1,4 @@
-import "./userList.css";
+import "./ListDataPenduduk.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
@@ -13,11 +13,8 @@ export default function UserList() {
   };
   
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "user",
-      headerName: "User",
-      width: 200,
+    { field: "id", headerName: "NIK", width: 140 },
+    { field: "user", headerName: "Nama", width: 200,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -27,25 +24,22 @@ export default function UserList() {
         );
       },
     },
-    { field: "email", headerName: "Email", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
-    },
+    { field: "tempat_lahir", headerName: "Tempat Lahir", width: 200 },
+    { field: "tanggal_lahir", headerName: "Tanggal Lahir", width: 180 },
+    { field: "alamat", headerName: "Alamat", width: 160 },
+    { field: "agama", headerName: "Agama", width: 150 },
+    { field: "status_kawin", headerName: "Status Kawin", width: 180 },
+    { field: "pekerjaan", headerName: "Pekerjaan", width: 180 },
+    { field: "kewarganegaraan", headerName: "Kewarganegaraan", width: 200 },
+    { field: "tanggal_pembuatan", headerName: "Tanggal Pembuatan", width: 200 },
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 120,
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={"/AdminEdit/" + params.row.id}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
@@ -64,7 +58,7 @@ export default function UserList() {
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={20}
         checkboxSelection
       />
     </div>
