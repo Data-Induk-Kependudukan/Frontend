@@ -7,6 +7,10 @@ import UserList from "./pages/ListDataPenduduk/ListDataPenduduk";
 import User from "./pages/AdminEdit/AdminEdit";
 import EditDataSaya from "./pages/EditDataSaya/EditDataSaya";
 import NewUser from "./pages/DataPendudukBaru/DataPendudukBaru";
+import UserList1 from "./pages/ListDataLembagaMedis/ListDataLembagaMedis";
+import UserList2 from "./pages/ListDataLembagaKepolisian/ListDataLembagaKepolisian";
+import UserList3 from "./pages/ListDataLembagaPendidikan/ListDataLembagaPendidikan";
+import UserList4 from "./pages/ListDataLembagaKeuangan/ListDataLembagaKeuangan";
 
 function App() {
   return (
@@ -20,6 +24,18 @@ function App() {
           </Route>
           <Route path="/ListDataPenduduk">
             <UserList />
+          </Route>
+          <Route path="/ListDataLembagaMedis">
+            <UserList1 />
+          </Route>
+          <Route path="/ListDataLembagaKepolisian">
+            <UserList2 />
+          </Route>
+          <Route path="/ListDataLembagaPendidikan">
+            <UserList3 />
+          </Route>
+          <Route path="/ListDataLembagaKeuangan">
+            <UserList4 />
           </Route>
           <Route path="/EditDataSaya/:userId">
             <User />

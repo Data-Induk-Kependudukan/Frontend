@@ -44,6 +44,30 @@ export default function Sidebar() {
                 Tambah Data Penduduk
               </li>
             </Link>
+            <Link to="/ListDataLembagaMedis" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                List Data Lembaga Medis
+              </li>
+            </Link>
+            <Link to="/ListDataLembagaKepolisian" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                List Data Lembaga Kepolisian
+              </li>
+            </Link>
+            <Link to="/ListDataLembagaPendidikan" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                List Data Lembaga Pendidikan
+              </li>
+            </Link>
+            <Link to="/ListDataLembagaKeuangan" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                List Data Lembaga Keuangan
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
