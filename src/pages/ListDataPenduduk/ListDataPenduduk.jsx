@@ -1,37 +1,43 @@
 import "./ListDataPenduduk.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function UserList() {
-  const [data, setData] = useState(userRows);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/mainIdentity`)
+      .then((res) => {
+        res.data.forEach((obj) => {
+          obj.id=obj._id;
+          const arraykosong = Object.values(obj.alamat)
+          obj.alamatBaru = arraykosong.join(" ")
+        });
+        setData(res.data)
+        console.log(res.data)
+      })
+      .catch((e) => console.log(e.message));
+  }, []);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
   
   const columns = [
-    { field: "nik", headerName: "NIK", width: 140 },
-    { field: "nama", headerName: "Nama", width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.foto_profil} alt="" />
-            {params.row.nama}
-          </div>
-        );
-      },
-    },
-    { field: "tempat_lahir", headerName: "Tempat Lahir", width: 200 },
-    { field: "tanggal_lahir", headerName: "Tanggal Lahir", width: 180 },
-    { field: "alamat", headerName: "Alamat", width: 160 },
+    { field: "NIK", headerName: "NIK", width: 140 },
+    { field: "nama_lkp", headerName: "Nama", width: 200},
+    { field: "tmp_lhr", headerName: "Tempat Lahir", width: 200 },
+    { field: "tgl_lhr", headerName: "Tanggal Lahir", width: 180 },
+    { field: "alamatBaru", headerName: "Alamat", width: 200 },
     { field: "agama", headerName: "Agama", width: 150 },
-    { field: "status_kawin", headerName: "Status Kawin", width: 180 },
+    { field: "sts_kawin", headerName: "Status Kawin", width: 180 },
     { field: "pekerjaan", headerName: "Pekerjaan", width: 180 },
     { field: "kewarganegaraan", headerName: "Kewarganegaraan", width: 200 },
-    { field: "tanggal_pembuatan", headerName: "Tanggal Pembuatan", width: 200 },
+    { field: "tgl_pembuatan", headerName: "Tanggal Pembuatan", width: 200 },
     {
       field: "action",
       headerName: "Action",

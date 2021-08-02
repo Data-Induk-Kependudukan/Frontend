@@ -1,64 +1,156 @@
 import "./DataPendudukBaru.css";
+import { Formik, Field, Form } from 'formik';
+import axios from 'axios';
 
 export default function NewUser() {
+
+  const handleNewData = async (data) => {
+    return await axios.post('http://localhost:8000/mainIdentity', data)
+  }
+
   return (
     <div className="newUser">
       <h1 className="newUserTitle">Data Kependudukan Baru</h1>
-      <form className="newUserForm">
-        <div className="newUserItem">
-          <label>NIK</label>
-          <input type="text" placeholder="3273171207" />
-        </div>
-        <div className="newUserItem">
-          <label>Nama</label>
-          <input type="text" placeholder="Nuri" />
-        </div>
-        <div className="newUserItem">
-          <label>Tempat Lahir</label>
-          <input type="email" placeholder="Bandung" />
-        </div>
-        <div className="newUserItem">
-          <label>Tanggal Lahir</label>
-          <input type="password" placeholder="2001-07-01" />
-        </div>
-        <div className="newUserItem">
-          <label>Alamat</label>
-          <input type="text" placeholder="Kp. Sisi Barat 78" />
-        </div>
-        <div className="newUserItem">
-          <label>Agama</label>
-          <select className="newUserSelect" name="active" id="active">
-            <option value="muslim">Muslim</option>
-            <option value="kristen">Kristen</option>
-            <option value="katolik">Katolik</option>
-            <option value="hindu">Hindu</option>
-            <option value="buddha">Buddha</option>
-            <option value="konghucu">Konghucu</option>
-          </select>
-        </div>
-        <div className="newUserItem">
-          <label>Status Kawin</label>
-          <select className="newUserSelect" name="active" id="active">
-            <option value="kawin">Kawin</option>
-            <option value="belum_kawin">Belum Kawin</option>
-            <option value="cerai_hidup">Cerai Hidup</option>
-            <option value="cerai_mati">Cerai Mati</option>
-          </select>
-        </div>
-        <div className="newUserItem">
-          <label>Pekerjaan</label>
-          <input type="text" placeholder="Buruh" />
-        </div>
-        <div className="newUserItem">
-          <label>Kewarganegaraan</label>
-          <input type="text" placeholder="Indonesia" />
-        </div>
-        <div className="newUserItem">
-          <label>Tanggal Pembuatan</label>
-          <input type="text" placeholder="2018-07-01" />
-        </div>
-        <button className="newUserButton">Create</button>
-      </form>
+      <Formik
+        initialValues={{
+          NIK: "",
+          nama_lkp: "",
+          tmp_lhr: "",
+          tgl_lhr: "",
+          jns_klmn: "",
+          goldar: "",
+          Alamat: "",
+          RT: "",
+          RW: "",
+          KelDesa: "",
+          Kec: "",
+          KabKot: "",
+          Prov: "",
+          Pos: "",
+          agama: "",
+          sts_kawin: "",
+          pekerjaan: "",
+          kewarganegaraan: "",
+          tgl_pembuatan: ""
+        }}
+        enableReinitialize={true}
+        onSubmit={async (values) => {
+          const newObj = {
+            NIK: values.NIK,
+            nama_lkp: values.nama_lkp,
+            tmp_lhr: values.tmp_lhr,
+            tgl_lahir: values.tgl_lahir,
+            jns_klmn: values.jns_klmn,
+            goldar: values.goldar,
+            alamat: {
+              Alamat: values.Alamat,
+              RT: values.RT,
+              RW: values.RW,
+              KelDesa: values.KelDesa,
+              Kec: values.Kec,
+              KabKot: values.KabKot,
+              Prov: values.Prov,
+              Pos: values.Pos
+            },
+            agama: values.agama,
+            sts_kawin: values.sts_kawin,
+            pekerjaan: values.pekerjaan,
+            kewarganegaraan: values.kewarganegaraan,
+            tgl_pembuatan: values.tgl_pembuatan,
+            foto: ""
+          }
+          try {
+            await handleNewData(newObj)
+          } catch (e) {
+            console.log(e.message);
+          }
+        }}
+      >
+        {() => (
+          <Form className="newUserForm">
+            <div>
+              <label htmlFor="NIK">NIK</label>
+              <Field className="newUserItem" type="text" name="NIK" required />
+            </div>
+            <div>
+              <label htmlFor="nama_lkp">Nama Lengkap</label>
+              <Field className="newUserItem" type="text" name="nama_lkp" />
+            </div>
+            <div>
+              <label htmlFor="tmp_lhr">Tempat Lahir</label>
+              <Field className="newUserItem" type="text" name="tmp_lhr" />
+            </div>
+            <div>
+              <label htmlFor="tgl_lahir">Tanggal Lahir</label>
+              <Field className="newUserItem" type="text" name="tgl_lahir" />
+            </div>
+            <div>
+              <label htmlFor="jns_klmn">Jenis Kelamin</label>
+              <Field className="newUserItem" type="text" name="jns_klmn" />
+            </div>
+            <div>
+              <label htmlFor="goldar">Golongan Darah</label>
+              <Field className="newUserItem" type="text" name="goldar" />
+            </div>
+            <div>
+              <label htmlFor="alamat">Alamat</label>
+              <Field className="newUserItem" type="text" name="alamat" />
+            </div>
+            <div>
+              <label htmlFor="RT">RT</label>
+              <Field className="newUserItem" type="text" name="RT" />
+            </div>
+            <div>
+              <label htmlFor="RW">RW</label>
+              <Field className="newUserItem" type="text" name="RW" />
+            </div>
+            <div>
+              <label htmlFor="Kel/Desa">Kelurahan/Desa</label>
+              <Field className="newUserItem" type="text" name="Kel/Desa" />
+            </div>
+            <div>
+              <label htmlFor="Kec">Kecamatan</label>
+              <Field className="newUserItem" type="text" name="Kec" />
+            </div>
+            <div>
+              <label htmlFor="KabKot">Kabupaten/Kota</label>
+              <Field className="newUserItem" type="text" name="KabKot" />
+            </div>
+            <div>
+              <label htmlFor="Prov">Prov</label>
+              <Field className="newUserItem" type="text" name="Prov" />
+            </div>
+            <div>
+              <label htmlFor="Pos">Pos</label>
+              <Field className="newUserItem" type="text" name="Pos" />
+            </div>
+            <div>
+              <label htmlFor="agama">Agama</label>
+              <Field className="newUserItem" type="text" name="agama" />
+            </div>
+            <div>
+              <label htmlFor="sts_kawin">Status Kawin</label>
+              <Field className="newUserItem" type="text" name="sts_kawin" />
+            </div>
+            <div>
+              <label htmlFor="pekerjaan">Pekerjaan</label>
+              <Field className="newUserItem" type="text" name="pekerjaan" />
+            </div>
+            <div>
+              <label htmlFor="kewarganegaraan">Kewarganegaraan</label>
+              <Field className="newUserItem" type="text" name="kewarganegaraan" />
+            </div>
+            <div>
+              <label htmlFor="tgl_pembuatan">Tanggal Pembuatan</label>
+              <Field className="newUserItem" type="text" name="tgl_pembuatan" />
+            </div>
+            <br />
+            <button className="newUserButton" type="submit">
+              Save
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }
