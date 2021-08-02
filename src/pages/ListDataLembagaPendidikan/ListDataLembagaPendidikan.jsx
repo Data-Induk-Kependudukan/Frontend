@@ -13,25 +13,11 @@ export default function UserList3() {
   };
   
   const columns = [
-    { field: "id", headerName: "NIK", width: 140 },
-    { field: "user", headerName: "Nama", width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    { field: "tempat_lahir", headerName: "Tempat Lahir", width: 200 },
-    { field: "tanggal_lahir", headerName: "Tanggal Lahir", width: 180 },
-    { field: "alamat", headerName: "Alamat", width: 160 },
-    { field: "agama", headerName: "Agama", width: 150 },
-    { field: "status_kawin", headerName: "Status Kawin", width: 180 },
-    { field: "pekerjaan", headerName: "Pekerjaan", width: 180 },
-    { field: "kewarganegaraan", headerName: "Kewarganegaraan", width: 200 },
-    { field: "tanggal_pembuatan", headerName: "Tanggal Pembuatan", width: 200 },
+    { field: "nik", headerName: "NIK", width: 140 },
+    { field: "riwayat_pendidikan", headerName: "Riwayat Pendidikan", width: 200 },
+    { field: "riwayat_beasiswa", headerName: "Riwayat Beasiswa", width: 200 },
+    { field: "riwayat_keorganisasian", headerName: "Riwayat Keorganisasian", width: 200 },
+    { field: "prestasi", headerName: "Prestasi", width: 200 },
     {
       field: "action",
       headerName: "Action",

@@ -64,11 +64,17 @@ export const productData = [{
 
 export const userRows = [{
         id: 1,
-        username: "Akbar",
-        avatar: "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-        email: "jon@gmail.com",
-        status: "active",
-        transaction: "$120.00",
+        nik: 32712512,
+        nama: "Akbar",
+        foto_profil: "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        tempat_lahir: "Bandung",
+        tanggal_lahir: "2001-02-21",
+        alamat: "Jl. Permata Biru No.3",
+        agama: "Satanism",
+        status_kawin: "Kawin",
+        pekerjaan: "Buruh",
+        kewarganegaraan: "Indonesia",
+        tanggal_pembuatan: "2020-02-10",
     },
     {
         id: 2,

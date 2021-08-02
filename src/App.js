@@ -38,7 +38,7 @@ function App() {
             <UserList4 />
           </Route>
           <Route path="/EditDataSaya/:userId">
-            <User />
+            <EditDataSaya />
           </Route>
           <Route path="/AdminEdit/:userId">
             <User />

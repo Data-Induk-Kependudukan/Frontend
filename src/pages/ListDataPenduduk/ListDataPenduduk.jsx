@@ -13,13 +13,13 @@ export default function UserList() {
   };
   
   const columns = [
-    { field: "id", headerName: "NIK", width: 140 },
-    { field: "user", headerName: "Nama", width: 200,
+    { field: "nik", headerName: "NIK", width: 140 },
+    { field: "nama", headerName: "Nama", width: 200,
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
+            <img className="userListImg" src={params.row.foto_profil} alt="" />
+            {params.row.nama}
           </div>
         );
       },

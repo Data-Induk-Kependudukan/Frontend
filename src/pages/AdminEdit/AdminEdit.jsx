@@ -1,9 +1,4 @@
 import {
-  CalendarToday,
-  LocationSearching,
-  MailOutline,
-  PermIdentity,
-  PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
 import "./AdminEdit.css";

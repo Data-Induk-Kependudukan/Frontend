@@ -13,25 +13,10 @@ export default function UserList4() {
   };
   
   const columns = [
-    { field: "id", headerName: "NIK", width: 140 },
-    { field: "user", headerName: "Nama", width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    { field: "tempat_lahir", headerName: "Tempat Lahir", width: 200 },
-    { field: "tanggal_lahir", headerName: "Tanggal Lahir", width: 180 },
-    { field: "alamat", headerName: "Alamat", width: 160 },
-    { field: "agama", headerName: "Agama", width: 150 },
-    { field: "status_kawin", headerName: "Status Kawin", width: 180 },
-    { field: "pekerjaan", headerName: "Pekerjaan", width: 180 },
-    { field: "kewarganegaraan", headerName: "Kewarganegaraan", width: 200 },
-    { field: "tanggal_pembuatan", headerName: "Tanggal Pembuatan", width: 200 },
+    { field: "nik", headerName: "NIK", width: 140 },
+    { field: "total_harta", headerName: "Total Harta", width: 200 },
+    { field: "gaji_kotor", headerName: "Gaji Kotor", width: 200 },
+    { field: "gaji_bersih", headerName: "Gaji Bersih", width: 200 },
     {
       field: "action",
       headerName: "Action",
