@@ -37,10 +37,10 @@ function App() {
           <Route path="/ListDataLembagaKeuangan">
             <UserList4 />
           </Route>
-          <Route path="/EditDataSaya/:userId">
+          <Route path="/EditDataSaya/:NIK">
             <EditDataSaya />
           </Route>
-          <Route path="/AdminEdit/:userId">
+          <Route path="/AdminEdit/:NIK">
             <User />
           </Route>
           <Route path="/DataPendudukBaru">

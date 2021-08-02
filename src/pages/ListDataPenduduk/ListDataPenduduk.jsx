@@ -23,8 +23,11 @@ export default function UserList() {
       .catch((e) => console.log(e.message));
   }, []);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     setData(data.filter((item) => item.id !== id));
+    await axios.delete(`http://localhost:8000/mainIdentity/${id}`)
+    alert("Telah di Delete")
+    window.location.reload()
   };
   
   const columns = [
@@ -45,12 +48,12 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/AdminEdit/" + params.row.id}>
+            <Link to={"/AdminEdit/" + params.row.NIK}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.NIK)}
             />
           </>
         );

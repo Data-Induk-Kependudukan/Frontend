@@ -30,8 +30,7 @@ export default function NewUser() {
           agama: "",
           sts_kawin: "",
           pekerjaan: "",
-          kewarganegaraan: "",
-          tgl_pembuatan: ""
+          kewarganegaraan: ""
         }}
         enableReinitialize={true}
         onSubmit={async (values) => {
@@ -56,11 +55,12 @@ export default function NewUser() {
             sts_kawin: values.sts_kawin,
             pekerjaan: values.pekerjaan,
             kewarganegaraan: values.kewarganegaraan,
-            tgl_pembuatan: values.tgl_pembuatan,
             foto: ""
           }
           try {
             await handleNewData(newObj)
+            alert("Data telah dimasukkan!!!")
+            window.location.reload()
           } catch (e) {
             console.log(e.message);
           }
@@ -139,10 +139,6 @@ export default function NewUser() {
             <div>
               <label htmlFor="kewarganegaraan">Kewarganegaraan</label>
               <Field className="newUserItem" type="text" name="kewarganegaraan" />
-            </div>
-            <div>
-              <label htmlFor="tgl_pembuatan">Tanggal Pembuatan</label>
-              <Field className="newUserItem" type="text" name="tgl_pembuatan" />
             </div>
             <br />
             <button className="newUserButton" type="submit">
