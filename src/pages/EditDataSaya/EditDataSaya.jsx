@@ -1,165 +1,169 @@
-import {
-  Publish
-} from "@material-ui/icons";
 import "./EditDataSaya.css";
+import { useState, useEffect } from "react";
+import { Formik, Field, Form } from 'formik';
+import axios from 'axios';
+import { useParams } from "react-router-dom";
 
 export default function EditDataSaya() {
+
+  const [data, setData] = useState([]);
+
+  const { NIK } = useParams()
+  useEffect(() => {
+    axios.get(`http://localhost:8000/mainIdentity/${NIK}`)
+      .then((res) => {
+        res.data.id = res.data._id;
+        setData(res.data)
+        console.log(res.data)
+      })
+      .catch((e) => console.log(e.message));
+  }, []);
+
+  const handleUpdate = async (data) => {
+    console.log(data)
+    await axios.put(`http://localhost:8000/mainIdentity/${NIK}`, data)
+  };
+
   return (
-    <div className="user">
-      <div className="userTitleContainer">
-        <h1 className="userTitle">Edit Data Penduduk</h1>
-      </div>
-      <div className="userContainer">
-        <div className="userShow">
-          <div className="userShowTop">
-            <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-              className="userShowImg"
-            />
-            <div className="userShowTopTitle">
-              <span className="userShowUserNama">Anna Becker</span>
-              <span className="userShowUserPekerjaan">Software Engineer</span>
+
+    <div className="User">
+      <h1 className="userTitleContainer">Edit Data Kependudukan</h1>
+      <Formik
+        initialValues={{
+          NIK: data.NIK || '',
+          nama_lkp: data.nama_lkp || '',
+          tmp_lhr: data.tmp_lhr || '',
+          tgl_lhr: data.tgl_lhr || '',
+          jns_klmn: data.jns_klmn || '',
+          goldar: data.goldar || '',
+          Alamat: data.alamat?.Alamat || '',
+          RT: data.alamat?.RT || '',
+          RW: data.alamat?.RW || '',
+          KelDesa: data.alamat?.KelDesa || '',
+          Kec: data.alamat?.Kec || '',
+          KabKot: data.alamat?.KabKot || '',
+          Prov: data.alamat?.Prov || '',
+          Pos: data.alamat?.Pos || '',
+          agama: data.agama || '',
+          sts_kawin: data.sts_kawin || '',
+          pekerjaan: data.pekerjaan || '',
+          kewarganegaraan: data.kewarganegaraan || ''
+        }}
+        enableReinitialize={true}
+        onSubmit={async (values) => {
+          const newObj = {
+            NIK: values.NIK,
+            nama_lkp: values.nama_lkp,
+            tmp_lhr: values.tmp_lhr,
+            tgl_lahir: values.tgl_lahir,
+            jns_klmn: values.jns_klmn,
+            goldar: values.goldar,
+            alamat: {
+              Alamat: values.Alamat,
+              RT: values.RT,
+              RW: values.RW,
+              KelDesa: values.KelDesa,
+              Kec: values.Kec,
+              KabKot: values.KabKot,
+              Prov: values.Prov,
+              Pos: values.Pos
+            },
+            agama: values.agama,
+            sts_kawin: values.sts_kawin,
+            pekerjaan: values.pekerjaan,
+            kewarganegaraan: values.kewarganegaraan,
+            foto: ""
+          }
+          try {
+            await handleUpdate(newObj)
+            alert("Data telah diupdate!!!")
+            window.location.reload()
+          } catch (e) {
+            console.log(e.message);
+          }
+        }}
+      >
+        {() => (
+          <Form className="userUpdateForm">
+            <div>
+              <label htmlFor="NIK">NIK</label>
+              <Field className="userUpdateItem" type="text" name="NIK" required />
             </div>
-          </div>
-          <div className="userShowBottom">
-            <span className="userShowTitle">Account Details</span>
-            <div className="userShowInfo">
-              <h3>NIK : </h3>
-              <span className="userShowUserNIK">31251253</span>
+            <div>
+              <label htmlFor="nama_lkp">Nama Lengkap</label>
+              <Field className="userUpdateItem" type="text" name="nama_lkp" />
             </div>
-            <div className="userShowInfo">
-              <h3>Tempat Lahir : </h3>
-              <span className="userShowUserTempatLahir">Bandung</span>
+            <div>
+              <label htmlFor="tmp_lhr">Tempat Lahir</label>
+              <Field className="userUpdateItem" type="text" name="tmp_lhr" />
             </div>
-            <div className="userShowInfo">
-              <h3>Tanggal Lahir : </h3>
-              <span className="userShowUserTanggalLahir">2001-09-19</span>
+            <div>
+              <label htmlFor="tgl_lahir">Tanggal Lahir</label>
+              <Field className="userUpdateItem" type="text" name="tgl_lahir" />
             </div>
-            <div className="userShowInfo">
-              <h3>Alamat : </h3>
-              <span className="userShowUserAlamat">Jl. kampung biru 3</span>
+            <div>
+              <label htmlFor="jns_klmn">Jenis Kelamin</label>
+              <Field className="userUpdateItem" type="text" name="jns_klmn" />
             </div>
-            <div className="userShowInfo">
-              <h3>Agama : </h3>
-              <span className="userShowUserAgama">Islam</span>
+            <div>
+              <label htmlFor="goldar">Golongan Darah</label>
+              <Field className="userUpdateItem" type="text" name="goldar" />
             </div>
-            <div className="userShowInfo">
-              <h3>Status Kawin : </h3>
-              <span className="userShowUserStatusKawin">Kawin</span>
+            <div>
+              <label htmlFor="Alamat">Alamat</label>
+              <Field className="userUpdateItem" type="text" name="Alamat" />
             </div>
-            <div className="userShowInfo">
-              <h3>Kewarganegaraan : </h3>
-              <span className="userShowUserKewarganegaraan">Indonesia</span>
+            <div>
+              <label htmlFor="RT">RT</label>
+              <Field className="userUpdateItem" type="text" name="RT" />
             </div>
-            <div className="userShowInfo">
-              <h3>Tanggal Pembuatan : </h3>
-              <span className="userShowUserTanggalPembuatan">2019-09-18</span>
+            <div>
+              <label htmlFor="RW">RW</label>
+              <Field className="userUpdateItem" type="text" name="RW" />
             </div>
-          </div>
-        </div>
-        <div className="userUpdate">
-          <span className="userUpdateTitle">Edit</span>
-          <form className="userUpdateForm">
-            <div className="userUpdateLeft">
-              <div className="userUpdateItem">
-                <label>NIK</label>
-                <input
-                  type="text"
-                  placeholder="31251253"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Nama</label>
-                <input
-                  type="text"
-                  placeholder="Anna Becker"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Tempat Lahir</label>
-                <input
-                  type="text"
-                  placeholder="Bandung"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Tanggal Lahir</label>
-                <input
-                  type="text"
-                  placeholder="2001-09-19"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Alamat</label>
-                <input
-                  type="text"
-                  placeholder="Jl. kampung biru 3"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Agama</label>
-                <input
-                  type="text"
-                  placeholder="Islam"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Pekerjaan</label>
-                <input
-                  type="text"
-                  placeholder="Software Engineer"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Status Kawin</label>
-                <input
-                  type="text"
-                  placeholder="Kawin"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Kewarganegaraan</label>
-                <input
-                  type="text"
-                  placeholder="Indonesia"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Tanggal Pembuatan</label>
-                <input
-                  type="text"
-                  placeholder="2019-09-18"
-                  className="userUpdateInput"
-                />
-              </div>
+            <div>
+              <label htmlFor="Kel/Desa">Kelurahan/Desa</label>
+              <Field className="userUpdateItem" type="text" name="Kel/Desa" />
             </div>
-            <div className="userUpdateRight">
-              <div className="userUpdateUpload">
-                <img
-                  className="userUpdateImg"
-                  src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                  alt=""
-                />
-                <label htmlFor="file">
-                  <Publish className="userUpdateIcon" />
-                </label>
-                <input type="file" id="file" style={{ display: "none" }} />
-              </div>
-              <button className="userUpdateButton">Update</button>
+            <div>
+              <label htmlFor="Kec">Kecamatan</label>
+              <Field className="userUpdateItem" type="text" name="Kec" />
             </div>
-          </form>
-        </div>
-      </div>
+            <div>
+              <label htmlFor="KabKot">Kabupaten/Kota</label>
+              <Field className="userUpdateItem" type="text" name="KabKot" />
+            </div>
+            <div>
+              <label htmlFor="Prov">Prov</label>
+              <Field className="userUpdateItem" type="text" name="Prov" />
+            </div>
+            <div>
+              <label htmlFor="Pos">Pos</label>
+              <Field className="userUpdateItem" type="text" name="Pos" />
+            </div>
+            <div>
+              <label htmlFor="agama">Agama</label>
+              <Field className="userUpdateItem" type="text" name="agama" />
+            </div>
+            <div>
+              <label htmlFor="sts_kawin">Status Kawin</label>
+              <Field className="userUpdateItem" type="text" name="sts_kawin" />
+            </div>
+            <div>
+              <label htmlFor="pekerjaan">Pekerjaan</label>
+              <Field className="userUpdateItem" type="text" name="pekerjaan" />
+            </div>
+            <div>
+              <label htmlFor="kewarganegaraan">Kewarganegaraan</label>
+              <Field className="userUpdateItem" type="text" name="kewarganegaraan" />
+            </div>
+            <br />
+            <button className="userUpdateButton" type="submit">
+              Request
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

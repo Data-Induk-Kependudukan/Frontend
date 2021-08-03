@@ -26,7 +26,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Data Penduduk</h3>
           <ul className="sidebarList">
-            <Link to="/EditDataSaya/1" className="link">
+            <Link to="/EditDataSaya/123456789" className="link">
               <li className="sidebarListItem">
                 <Edit className="sidebarIcon" />
                 Edit Data Saya
