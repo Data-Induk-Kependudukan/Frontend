@@ -68,6 +68,12 @@ export default function Sidebar() {
                 List Data Lembaga Keuangan
               </li>
             </Link>
+            <Link to="/ListDataPendudukDanKeuangan" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                List Data Penduduk dan Keuangan
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">

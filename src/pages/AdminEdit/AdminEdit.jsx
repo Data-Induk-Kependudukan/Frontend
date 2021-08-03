@@ -27,7 +27,7 @@ export default function User() {
   return (
 
     <div className="User">
-      <h1 className="userTitleContainer">Data Kependudukan Baru</h1>
+      <h1 className="userTitleContainer">Edit Data Kependudukan</h1>
       <Formik
         initialValues={{
           NIK: data.NIK || '',

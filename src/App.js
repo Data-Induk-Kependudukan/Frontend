@@ -11,6 +11,7 @@ import UserList1 from "./pages/ListDataLembagaMedis/ListDataLembagaMedis";
 import UserList2 from "./pages/ListDataLembagaKepolisian/ListDataLembagaKepolisian";
 import UserList3 from "./pages/ListDataLembagaPendidikan/ListDataLembagaPendidikan";
 import UserList4 from "./pages/ListDataLembagaKeuangan/ListDataLembagaKeuangan";
+import UserListdanKeuangan from "./pages/ListDataPendudukDanKeuangan/ListDataPendudukDanKeuangan";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/ListDataPenduduk">
             <UserList />
+          </Route>
+          <Route path="/ListDataPendudukDanKeuangan">
+            <UserListdanKeuangan />
           </Route>
           <Route path="/ListDataLembagaMedis">
             <UserList1 />
