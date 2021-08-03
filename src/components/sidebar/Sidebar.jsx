@@ -76,15 +76,6 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Update Request
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   );
